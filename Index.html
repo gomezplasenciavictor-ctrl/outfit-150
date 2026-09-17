@@ -1,0 +1,1186 @@
+<!DOCTYPE html>
+<html lang="es">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<meta name="theme-color" content="#111111">
+<title>Outfit 150</title>
+
+<style>
+:root{
+  --bg:#f5f5f3;
+  --card:#ffffff;
+  --text:#151515;
+  --muted:#777;
+  --line:#e6e6e6;
+  --dark:#111;
+  --green:#26734d;
+  --red:#b33a3a;
+}
+
+*{box-sizing:border-box}
+
+body{
+  margin:0;
+  background:var(--bg);
+  color:var(--text);
+  font-family:-apple-system,BlinkMacSystemFont,"Segoe UI",Roboto,Arial,sans-serif;
+  padding-bottom:88px;
+}
+
+header{
+  background:#111;
+  color:white;
+  padding:25px 20px 22px;
+  position:sticky;
+  top:0;
+  z-index:10;
+}
+
+.header-row{
+  display:flex;
+  justify-content:space-between;
+  align-items:center;
+  max-width:720px;
+  margin:auto;
+}
+
+.logo{
+  font-size:26px;
+  font-weight:800;
+  letter-spacing:-1px;
+}
+
+.month{
+  font-size:13px;
+  opacity:.65;
+}
+
+main{
+  max-width:720px;
+  margin:auto;
+  padding:18px;
+}
+
+.page{display:none}
+.page.active{display:block}
+
+.hero{
+  margin-bottom:18px;
+}
+
+.hero h1{
+  margin:0 0 5px;
+  font-size:28px;
+}
+
+.hero p{
+  margin:0;
+  color:var(--muted);
+}
+
+.card{
+  background:var(--card);
+  border-radius:20px;
+  padding:18px;
+  margin-bottom:16px;
+  box-shadow:0 4px 18px rgba(0,0,0,.05);
+}
+
+.card-title{
+  display:flex;
+  justify-content:space-between;
+  align-items:center;
+  margin-bottom:14px;
+}
+
+.card-title h2{
+  margin:0;
+  font-size:19px;
+}
+
+.outfit-grid{
+  display:grid;
+  grid-template-columns:1fr 1fr;
+  gap:10px;
+}
+
+.item{
+  position:relative;
+  border:1px solid var(--line);
+  border-radius:16px;
+  overflow:hidden;
+  background:#fafafa;
+}
+
+.item-img{
+  height:145px;
+  display:flex;
+  align-items:center;
+  justify-content:center;
+  font-size:55px;
+  background:#eeeeec;
+}
+
+.item-info{
+  padding:12px;
+}
+
+.category{
+  font-size:11px;
+  color:var(--muted);
+  text-transform:uppercase;
+  letter-spacing:.5px;
+}
+
+.item-name{
+  font-weight:700;
+  margin-top:3px;
+}
+
+.brand{
+  color:#666;
+  font-size:13px;
+  margin-top:3px;
+}
+
+.price{
+  font-weight:700;
+  margin-top:7px;
+}
+
+.heart{
+  position:absolute;
+  right:9px;
+  top:9px;
+  width:34px;
+  height:34px;
+  border-radius:50%;
+  border:0;
+  background:white;
+  font-size:17px;
+  box-shadow:0 2px 8px rgba(0,0,0,.12);
+}
+
+.buttons{
+  display:grid;
+  grid-template-columns:1fr 1fr;
+  gap:10px;
+  margin-top:14px;
+}
+
+button{
+  border:0;
+  border-radius:13px;
+  padding:14px;
+  font-size:15px;
+  font-weight:700;
+  cursor:pointer;
+}
+
+.primary{
+  background:var(--dark);
+  color:white;
+}
+
+.secondary{
+  background:#ededeb;
+  color:#111;
+}
+
+.small-btn{
+  padding:8px 11px;
+  font-size:12px;
+  background:#eee;
+}
+
+.budget{
+  display:grid;
+  grid-template-columns:1fr 1fr 1fr;
+  gap:8px;
+  text-align:center;
+}
+
+.budget-box{
+  background:#f5f5f3;
+  padding:14px 7px;
+  border-radius:14px;
+}
+
+.budget-value{
+  font-size:21px;
+  font-weight:800;
+}
+
+.budget-label{
+  color:var(--muted);
+  font-size:11px;
+  margin-top:3px;
+}
+
+.progress{
+  height:9px;
+  background:#e7e7e5;
+  border-radius:20px;
+  overflow:hidden;
+  margin-top:15px;
+}
+
+.progress-bar{
+  height:100%;
+  background:#111;
+  width:0%;
+  transition:.3s;
+}
+
+.purchase{
+  display:flex;
+  align-items:center;
+  gap:12px;
+  padding:12px 0;
+  border-bottom:1px solid var(--line);
+}
+
+.purchase:last-child{
+  border-bottom:0;
+}
+
+.purchase-icon{
+  width:48px;
+  height:48px;
+  background:#eee;
+  border-radius:12px;
+  display:flex;
+  justify-content:center;
+  align-items:center;
+  font-size:24px;
+}
+
+.purchase-info{
+  flex:1;
+}
+
+.purchase-brand{
+  font-size:12px;
+  color:var(--muted);
+}
+
+.purchase-name{
+  font-weight:700;
+}
+
+.purchase-price{
+  font-weight:700;
+}
+
+.tabs{
+  position:fixed;
+  bottom:0;
+  left:0;
+  right:0;
+  background:white;
+  border-top:1px solid var(--line);
+  height:76px;
+  display:flex;
+  justify-content:center;
+  z-index:20;
+}
+
+.tab{
+  flex:1;
+  max-width:140px;
+  background:white;
+  color:#777;
+  border-radius:0;
+  font-size:11px;
+  padding:9px 2px;
+}
+
+.tab.active{
+  color:#111;
+  font-weight:800;
+}
+
+.tab-icon{
+  display:block;
+  font-size:22px;
+  margin-bottom:2px;
+}
+
+.filters{
+  display:flex;
+  gap:7px;
+  overflow-x:auto;
+  padding-bottom:8px;
+}
+
+.filter{
+  white-space:nowrap;
+  background:#eee;
+  border:0;
+  padding:9px 13px;
+  border-radius:20px;
+  font-size:12px;
+}
+
+.filter.selected{
+  background:#111;
+  color:white;
+}
+
+.closet-grid{
+  display:grid;
+  grid-template-columns:1fr 1fr;
+  gap:10px;
+}
+
+.stat-grid{
+  display:grid;
+  grid-template-columns:1fr 1fr;
+  gap:10px;
+}
+
+.stat{
+  background:#f4f4f2;
+  border-radius:16px;
+  padding:17px;
+}
+
+.stat-number{
+  font-size:27px;
+  font-weight:800;
+}
+
+.stat-label{
+  color:var(--muted);
+  font-size:12px;
+}
+
+.brand-list{
+  display:flex;
+  flex-wrap:wrap;
+  gap:7px;
+}
+
+.brand-tag{
+  border:1px solid var(--line);
+  border-radius:20px;
+  padding:8px 11px;
+  font-size:12px;
+  background:white;
+}
+
+.empty{
+  text-align:center;
+  padding:35px 15px;
+  color:var(--muted);
+}
+
+@media(max-width:430px){
+  .item-img{height:125px}
+}
+</style>
+</head>
+
+<body>
+
+<header>
+  <div class="header-row">
+    <div class="logo">OUTFIT 150</div>
+    <div class="month" id="monthName"></div>
+  </div>
+</header>
+
+<main>
+
+<!-- INICIO -->
+<section id="home" class="page active">
+
+  <div class="hero">
+    <h1>Tu outfit de hoy</h1>
+    <p>Viste bien sin salirte de tu presupuesto.</p>
+  </div>
+
+  <div class="card">
+    <div class="card-title">
+      <h2>Outfit generado</h2>
+      <button class="small-btn" onclick="toggleFavorite()">♡ Guardar</button>
+    </div>
+
+    <div class="outfit-grid">
+
+      <div class="item">
+        <button class="heart" onclick="changeItem('camisa')">↻</button>
+        <div class="item-img" id="img-camisa">👔</div>
+        <div class="item-info">
+          <div class="category">Camisa</div>
+          <div class="item-name" id="name-camisa"></div>
+          <div class="brand" id="brand-camisa"></div>
+          <div class="price" id="price-camisa"></div>
+        </div>
+      </div>
+
+      <div class="item">
+        <button class="heart" onclick="changeItem('capa')">↻</button>
+        <div class="item-img" id="img-capa">🧶</div>
+        <div class="item-info">
+          <div class="category">Capa</div>
+          <div class="item-name" id="name-capa"></div>
+          <div class="brand" id="brand-capa"></div>
+          <div class="price" id="price-capa"></div>
+        </div>
+      </div>
+
+      <div class="item">
+        <button class="heart" onclick="changeItem('chino')">↻</button>
+        <div class="item-img" id="img-chino">👖</div>
+        <div class="item-info">
+          <div class="category">Chinos</div>
+          <div class="item-name" id="name-chino"></div>
+          <div class="brand" id="brand-chino"></div>
+          <div class="price" id="price-chino"></div>
+        </div>
+      </div>
+
+      <div class="item">
+        <button class="heart" onclick="changeItem('calzado')">↻</button>
+        <div class="item-img" id="img-calzado">👞</div>
+        <div class="item-info">
+          <div class="category">Calzado</div>
+          <div class="item-name" id="name-calzado"></div>
+          <div class="brand" id="brand-calzado"></div>
+          <div class="price" id="price-calzado"></div>
+        </div>
+      </div>
+
+    </div>
+
+    <div class="buttons">
+      <button class="primary" onclick="generateOutfit()">🎲 Nuevo outfit</button>
+      <button class="secondary" onclick="showPage('closet')">👔 Mi armario</button>
+    </div>
+  </div>
+
+  <div class="card">
+    <div class="card-title">
+      <h2>Presupuesto del mes</h2>
+      <span id="budgetPercent">0%</span>
+    </div>
+
+    <div class="budget">
+      <div class="budget-box">
+        <div class="budget-value">150€</div>
+        <div class="budget-label">Límite</div>
+      </div>
+
+      <div class="budget-box">
+        <div class="budget-value" id="spent">0€</div>
+        <div class="budget-label">Gastado</div>
+      </div>
+
+      <div class="budget-box">
+        <div class="budget-value" id="remaining">150€</div>
+        <div class="budget-label">Disponible</div>
+      </div>
+    </div>
+
+    <div class="progress">
+      <div class="progress-bar" id="progressBar"></div>
+    </div>
+  </div>
+
+</section>
+
+
+<!-- ARMARIO -->
+<section id="closet" class="page">
+
+  <div class="hero">
+    <h1>Mi armario</h1>
+    <p>Prendas y marcas de Outfit 150.</p>
+  </div>
+
+  <div class="card">
+    <div class="filters" id="filters"></div>
+  </div>
+
+  <div class="closet-grid" id="closetGrid"></div>
+
+</section>
+
+
+<!-- COMPRAS -->
+<section id="shopping" class="page">
+
+  <div class="hero">
+    <h1>Compras</h1>
+    <p>2–3 compras al mes sin superar 150 €.</p>
+  </div>
+
+  <div class="card">
+    <div class="budget">
+      <div class="budget-box">
+        <div class="budget-value" id="shoppingSpent">0€</div>
+        <div class="budget-label">Gastado</div>
+      </div>
+
+      <div class="budget-box">
+        <div class="budget-value" id="shoppingRemaining">150€</div>
+        <div class="budget-label">Restante</div>
+      </div>
+
+      <div class="budget-box">
+        <div class="budget-value" id="purchaseCount">0/3</div>
+        <div class="budget-label">Compras</div>
+      </div>
+    </div>
+  </div>
+
+  <div class="card">
+    <div class="card-title">
+      <h2>Compra recomendada</h2>
+    </div>
+
+    <div id="recommendation"></div>
+
+    <button class="primary" onclick="addRecommendedPurchase()">
+      + Añadir compra
+    </button>
+  </div>
+
+  <div class="card">
+    <div class="card-title">
+      <h2>Mis compras</h2>
+    </div>
+
+    <div id="purchaseList"></div>
+  </div>
+
+</section>
+
+
+<!-- FAVORITOS -->
+<section id="favorites" class="page">
+
+  <div class="hero">
+    <h1>Favoritos ❤️</h1>
+    <p>Tus outfits guardados.</p>
+  </div>
+
+  <div id="favoritesList"></div>
+
+</section>
+
+
+<!-- PERFIL -->
+<section id="profile" class="page">
+
+  <div class="hero">
+    <h1>Mi perfil</h1>
+    <p>Tu espacio dentro de Outfit 150.</p>
+  </div>
+
+  <div class="card">
+    <div class="card-title">
+      <h2>Outfit 150</h2>
+      <span>👤</span>
+    </div>
+
+    <div class="stat-grid">
+      <div class="stat">
+        <div class="stat-number" id="totalItems">0</div>
+        <div class="stat-label">Prendas</div>
+      </div>
+
+      <div class="stat">
+        <div class="stat-number" id="totalFavorites">0</div>
+        <div class="stat-label">Favoritos</div>
+      </div>
+
+      <div class="stat">
+        <div class="stat-number">7</div>
+        <div class="stat-label">Marcas</div>
+      </div>
+
+      <div class="stat">
+        <div class="stat-number">150€</div>
+        <div class="stat-label">Presupuesto</div>
+      </div>
+    </div>
+  </div>
+
+  <div class="card">
+    <div class="card-title">
+      <h2>Mis marcas</h2>
+    </div>
+
+    <div class="brand-list">
+      <span class="brand-tag">Álvaro Moreno</span>
+      <span class="brand-tag">Zara</span>
+      <span class="brand-tag">El Ganso</span>
+      <span class="brand-tag">Silbon</span>
+      <span class="brand-tag">Springfield</span>
+      <span class="brand-tag">Sfera</span>
+      <span class="brand-tag">Cold Culture</span>
+    </div>
+  </div>
+
+</section>
+
+</main>
+
+
+<!-- NAVEGACIÓN -->
+<nav class="tabs">
+
+  <button class="tab active" data-page="home" onclick="showPage('home')">
+    <span class="tab-icon">🏠</span>
+    Inicio
+  </button>
+
+  <button class="tab" data-page="closet" onclick="showPage('closet')">
+    <span class="tab-icon">👔</span>
+    Armario
+  </button>
+
+  <button class="tab" data-page="shopping" onclick="showPage('shopping')">
+    <span class="tab-icon">🛍️</span>
+    Compras
+  </button>
+
+  <button class="tab" data-page="favorites" onclick="showPage('favorites')">
+    <span class="tab-icon">❤️</span>
+    Favoritos
+  </button>
+
+  <button class="tab" data-page="profile" onclick="showPage('profile')">
+    <span class="tab-icon">👤</span>
+    Perfil
+  </button>
+
+</nav>
+
+
+<script>
+
+const brands = [
+  "Álvaro Moreno",
+  "Zara",
+  "El Ganso",
+  "Silbon",
+  "Springfield",
+  "Sfera",
+  "Cold Culture"
+];
+
+const clothes = [
+
+  {id:1,type:"camisa",name:"Camisa Oxford blanca",brand:"Álvaro Moreno",price:39.99,emoji:"👔",color:"Blanco"},
+  {id:2,type:"camisa",name:"Camisa azul cielo",brand:"Zara",price:29.99,emoji:"👔",color:"Azul"},
+  {id:3,type:"camisa",name:"Camisa Oxford azul",brand:"El Ganso",price:59.90,emoji:"👔",color:"Azul"},
+  {id:4,type:"camisa",name:"Camisa blanca estampado sutil",brand:"Silbon",price:49.90,emoji:"👔",color:"Blanco"},
+  {id:5,type:"camisa",name:"Camisa rayas azul",brand:"Springfield",price:29.99,emoji:"👔",color:"Azul"},
+  {id:6,type:"camisa",name:"Camisa beige",brand:"Sfera",price:29.99,emoji:"👔",color:"Beige"},
+
+  {id:7,type:"capa",name:"Jersey azul marino",brand:"Álvaro Moreno",price:49.99,emoji:"🧶",color:"Azul"},
+  {id:8,type:"capa",name:"Jersey gris cuello redondo",brand:"Zara",price:35.99,emoji:"🧶",color:"Gris"},
+  {id:9,type:"capa",name:"Jersey verde botella",brand:"El Ganso",price:69.90,emoji:"🧶",color:"Verde"},
+  {id:10,type:"capa",name:"Jersey beige",brand:"Silbon",price:59.90,emoji:"🧶",color:"Beige"},
+  {id:11,type:"capa",name:"Sudadera gris",brand:"Springfield",price:35.99,emoji:"🧥",color:"Gris"},
+  {id:12,type:"capa",name:"Sobrecamisa verde oliva",brand:"Sfera",price:39.99,emoji:"🧥",color:"Verde"},
+  {id:13,type:"capa",name:"Sudadera logo minimal",brand:"Cold Culture",price:75,emoji:"🧥",color:"Negro"},
+
+  {id:14,type:"chino",name:"Chino beige",brand:"Álvaro Moreno",price:39.99,emoji:"👖",color:"Beige"},
+  {id:15,type:"chino",name:"Chino azul marino",brand:"Zara",price:39.99,emoji:"👖",color:"Azul"},
+  {id:16,type:"chino",name:"Chino verde oscuro",brand:"El Ganso",price:69.90,emoji:"👖",color:"Verde"},
+  {id:17,type:"chino",name:"Chino gris",brand:"Silbon",price:59.90,emoji:"👖",color:"Gris"},
+  {id:18,type:"chino",name:"Chino arena",brand:"Springfield",price:29.99,emoji:"👖",color:"Beige"},
+  {id:19,type:"chino",name:"Chino negro",brand:"Sfera",price:29.99,emoji:"👖",color:"Negro"},
+
+  {id:20,type:"calzado",name:"Mocasín clásico",brand:"Álvaro Moreno",price:69.99,emoji:"👞",color:"Marrón"},
+  {id:21,type:"calzado",name:"Mocasín de piel",brand:"El Ganso",price:99.90,emoji:"👞",color:"Marrón"},
+  {id:22,type:"calzado",name:"Mocasín negro",brand:"Silbon",price:89.90,emoji:"👞",color:"Negro"},
+  {id:23,type:"calzado",name:"Zapatilla blanca",brand:"Zara",price:45.99,emoji:"👟",color:"Blanco"},
+  {id:24,type:"calzado",name:"Zapatilla retro",brand:"Springfield",price:39.99,emoji:"👟",color:"Blanco"},
+  {id:25,type:"calzado",name:"Zapatilla urbana",brand:"Sfera",price:35.99,emoji:"👟",color:"Blanco"},
+  {id:26,type:"calzado",name:"Sneaker negra",brand:"Cold Culture",price:90,emoji:"👟",color:"Negro"}
+];
+
+let currentOutfit = {};
+let selectedFilter = "Todos";
+
+let purchases = JSON.parse(localStorage.getItem("outfit150_purchases") || "[]");
+let favorites = JSON.parse(localStorage.getItem("outfit150_favorites") || "[]");
+
+function randomItem(type){
+
+  const options = clothes.filter(item => item.type === type);
+
+  return options[Math.floor(Math.random() * options.length)];
+}
+
+function generateOutfit(){
+
+  currentOutfit = {
+    camisa: randomItem("camisa"),
+    capa: randomItem("capa"),
+    chino: randomItem("chino"),
+    calzado: randomItem("calzado")
+  };
+
+  renderOutfit();
+}
+
+function changeItem(type){
+
+  currentOutfit[type] = randomItem(type);
+
+  renderOutfit();
+}
+
+function renderOutfit(){
+
+  Object.keys(currentOutfit).forEach(type => {
+
+    const item = currentOutfit[type];
+
+    document.getElementById("img-" + type).textContent = item.emoji;
+    document.getElementById("name-" + type).textContent = item.name;
+    document.getElementById("brand-" + type).textContent = item.brand;
+    document.getElementById("price-" + type).textContent = item.price.toFixed(2) + " €";
+
+  });
+}
+
+function toggleFavorite(){
+
+  if(!currentOutfit.camisa) return;
+
+  favorites.push({
+    id:Date.now(),
+    outfit:JSON.parse(JSON.stringify(currentOutfit))
+  });
+
+  localStorage.setItem(
+    "outfit150_favorites",
+    JSON.stringify(favorites)
+  );
+
+  renderFavorites();
+  updateProfile();
+}
+
+function renderFavorites(){
+
+  const container = document.getElementById("favoritesList");
+
+  if(favorites.length === 0){
+
+    container.innerHTML = `
+      <div class="card empty">
+        ❤️<br><br>
+        Todavía no tienes outfits favoritos.<br>
+        Guarda uno desde Inicio.
+      </div>
+    `;
+
+    return;
+  }
+
+  container.innerHTML = favorites.map((fav,index)=>{
+
+    const o = fav.outfit;
+
+    return `
+      <div class="card">
+
+        <div class="card-title">
+          <h2>Outfit ${index+1}</h2>
+
+          <button class="small-btn"
+            onclick="removeFavorite(${fav.id})">
+            Eliminar
+          </button>
+        </div>
+
+        <div class="outfit-grid">
+
+          ${favoriteItem(o.camisa)}
+          ${favoriteItem(o.capa)}
+          ${favoriteItem(o.chino)}
+          ${favoriteItem(o.calzado)}
+
+        </div>
+
+      </div>
+    `;
+
+  }).join("");
+}
+
+function favoriteItem(item){
+
+  return `
+    <div class="item">
+      <div class="item-img">${item.emoji}</div>
+
+      <div class="item-info">
+        <div class="category">${item.type}</div>
+        <div class="item-name">${item.name}</div>
+        <div class="brand">${item.brand}</div>
+      </div>
+    </div>
+  `;
+}
+
+function removeFavorite(id){
+
+  favorites = favorites.filter(f => f.id !== id);
+
+  localStorage.setItem(
+    "outfit150_favorites",
+    JSON.stringify(favorites)
+  );
+
+  renderFavorites();
+  updateProfile();
+}
+
+
+function renderFilters(){
+
+  const types = [
+    ["Todos","Todos"],
+    ["👔","camisa"],
+    ["🧶","capa"],
+    ["👖","chino"],
+    ["👞","calzado"]
+  ];
+
+  document.getElementById("filters").innerHTML =
+    types.map(x=>`
+      <button
+        class="filter ${selectedFilter===x[1]?"selected":""}"
+        onclick="filterCloset('${x[1]}')">
+        ${x[0]}
+      </button>
+    `).join("");
+}
+
+function filterCloset(type){
+
+  selectedFilter = type;
+
+  renderFilters();
+  renderCloset();
+}
+
+function renderCloset(){
+
+  let list = clothes;
+
+  if(selectedFilter !== "Todos"){
+    list = clothes.filter(x=>x.type === selectedFilter);
+  }
+
+  document.getElementById("closetGrid").innerHTML =
+    list.map(item=>`
+
+      <div class="item">
+
+        <button
+          class="heart"
+          onclick="addClosetFavorite(${item.id})">
+          ♡
+        </button>
+
+        <div class="item-img">
+          ${item.emoji}
+        </div>
+
+        <div class="item-info">
+
+          <div class="category">${item.color}</div>
+
+          <div class="item-name">
+            ${item.name}
+          </div>
+
+          <div class="brand">
+            ${item.brand}
+          </div>
+
+          <div class="price">
+            ${item.price.toFixed(2)} €
+          </div>
+
+        </div>
+
+      </div>
+
+    `).join("");
+}
+
+function addClosetFavorite(id){
+
+  const item = clothes.find(x=>x.id===id);
+
+  if(!item) return;
+
+  alert(item.name + " añadido a favoritos.");
+}
+
+
+function addRecommendedPurchase(){
+
+  if(purchases.length >= 3){
+
+    alert("Ya has alcanzado las 3 compras de este mes.");
+
+    return;
+  }
+
+  const recommendation = getRecommendation();
+
+  if(getSpent() + recommendation.price > 150){
+
+    alert("Esta compra superaría tu presupuesto mensual de 150 €.");
+
+    return;
+  }
+
+  purchases.push({
+    id:Date.now(),
+    ...recommendation
+  });
+
+  savePurchases();
+
+  renderShopping();
+  updateBudget();
+
+}
+
+
+function getRecommendation(){
+
+  const remaining = 150 - getSpent();
+
+  const options = clothes.filter(
+    x => x.price <= remaining
+  );
+
+  return options[Math.floor(Math.random()*options.length)];
+}
+
+
+function renderRecommendation(){
+
+  const item = getRecommendation();
+
+  document.getElementById("recommendation").innerHTML = `
+
+    <div class="purchase">
+
+      <div class="purchase-icon">
+        ${item.emoji}
+      </div>
+
+      <div class="purchase-info">
+
+        <div class="purchase-brand">
+          ${item.brand}
+        </div>
+
+        <div class="purchase-name">
+          ${item.name}
+        </div>
+
+      </div>
+
+      <div class="purchase-price">
+        ${item.price.toFixed(2)} €
+      </div>
+
+    </div>
+
+  `;
+}
+
+
+function getSpent(){
+
+  return purchases.reduce(
+    (sum,item)=>sum + Number(item.price),
+    0
+  );
+}
+
+
+function savePurchases(){
+
+  localStorage.setItem(
+    "outfit150_purchases",
+    JSON.stringify(purchases)
+  );
+
+}
+
+
+function renderShopping(){
+
+  const spent = getSpent();
+  const remaining = Math.max(0,150-spent);
+
+  document.getElementById("shoppingSpent").textContent =
+    spent.toFixed(2) + "€";
+
+  document.getElementById("shoppingRemaining").textContent =
+    remaining.toFixed(2) + "€";
+
+  document.getElementById("purchaseCount").textContent =
+    purchases.length + "/3";
+
+  const list = document.getElementById("purchaseList");
+
+  if(purchases.length === 0){
+
+    list.innerHTML = `
+      <div class="empty">
+        Todavía no has registrado compras este mes.
+      </div>
+    `;
+
+    return;
+  }
+
+  list.innerHTML = purchases.map(item=>`
+
+    <div class="purchase">
+
+      <div class="purchase-icon">
+        ${item.emoji}
+      </div>
+
+      <div class="purchase-info">
+
+        <div class="purchase-brand">
+          ${item.brand}
+        </div>
+
+        <div class="purchase-name">
+          ${item.name}
+        </div>
+
+      </div>
+
+      <div class="purchase-price">
+        ${Number(item.price).toFixed(2)} €
+      </div>
+
+    </div>
+
+  `).join("");
+}
+
+
+function updateBudget(){
+
+  const spent = getSpent();
+
+  const remaining = Math.max(0,150-spent);
+
+  const percentage =
+    Math.min(100,(spent/150)*100);
+
+  document.getElementById("spent").textContent =
+    spent.toFixed(2) + "€";
+
+  document.getElementById("remaining").textContent =
+    remaining.toFixed(2) + "€";
+
+  document.getElementById("budgetPercent").textContent =
+    Math.round(percentage) + "%";
+
+  document.getElementById("progressBar").style.width =
+    percentage + "%";
+}
+
+
+function updateProfile(){
+
+  document.getElementById("totalItems").textContent =
+    clothes.length;
+
+  document.getElementById("totalFavorites").textContent =
+    favorites.length;
+}
+
+
+function showPage(page){
+
+  document.querySelectorAll(".page")
+    .forEach(x=>x.classList.remove("active"));
+
+  document.getElementById(page)
+    .classList.add("active");
+
+  document.querySelectorAll(".tab")
+    .forEach(x=>x.classList.remove("active"));
+
+  const tab =
+    document.querySelector(`[data-page="${page}"]`);
+
+  if(tab) tab.classList.add("active");
+
+  window.scrollTo(0,0);
+
+  if(page==="favorites"){
+    renderFavorites();
+  }
+
+  if(page==="shopping"){
+    renderShopping();
+    renderRecommendation();
+  }
+
+  if(page==="closet"){
+    renderFilters();
+    renderCloset();
+  }
+
+  if(page==="profile"){
+    updateProfile();
+  }
+}
+
+
+function setMonth(){
+
+  const months = [
+    "Enero","Febrero","Marzo","Abril",
+    "Mayo","Junio","Julio","Agosto",
+    "Septiembre","Octubre","Noviembre","Diciembre"
+  ];
+
+  const now = new Date();
+
+  document.getElementById("monthName").textContent =
+    months[now.getMonth()] + " " + now.getFullYear();
+}
+
+
+generateOutfit();
+setMonth();
+updateBudget();
+renderFilters();
+renderCloset();
+renderFavorites();
+renderShopping();
+renderRecommendation();
+updateProfile();
+
+</script>
+
+</body>
+</html>
